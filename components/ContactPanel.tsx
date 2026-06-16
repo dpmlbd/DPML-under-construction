@@ -6,20 +6,34 @@ import { contactDetails } from "@/lib/site-config";
 interface ContactPanelProps {
   visible: boolean;
 }
+
 export function ContactPanel({ visible }: ContactPanelProps) {
   return (
-    <div className="absolute bottom-12 right-8 z-20 hidden flex-col items-end space-y-3 text-right md:flex">
-      {contactDetails.map(({ label, icon: Icon }, index) => (
-        <motion.div
+    <div
+      className="
+        relative z-20 mt-10 flex flex-col items-center gap-2.5
+        md:absolute md:bottom-12 md:right-8 md:mt-0 md:items-end md:gap-3 md:text-right
+      "
+    >
+      {contactDetails.map(({ label, icon: Icon, href, external }, index) => (
+        <motion.a
           key={label}
-          initial={{ opacity: 0, x: 26 }}
-          animate={visible ? { opacity: 1, x: 0 } : undefined}
-          transition={{ duration: 0.7, delay: 1.6 + index * 0.2 }}
-          className="flex items-center gap-3 text-white/70 transition-colors hover:text-white"
+          href={href}
+          target={external ? "_blank" : undefined}
+          rel={external ? "noopener noreferrer" : undefined}
+          initial={{ opacity: 0, y: 14 }}
+          animate={visible ? { opacity: 1, y: 0 } : undefined}
+          transition={{ duration: 0.6, delay: 1.6 + index * 0.15 }}
+          className="
+            flex items-center gap-2.5 text-white/70 transition-colors hover:text-white
+            md:gap-3
+          "
         >
-          <span className="text-xs tracking-wider">{label}</span>
-          <Icon size={14} className="text-brand-accent" />
-        </motion.div>
+          <span className="max-w-[78vw] text-[11px] tracking-wide sm:text-xs md:max-w-none md:tracking-wider">
+            {label}
+          </span>
+          <Icon size={13} className="shrink-0 text-brand-accent md:size-3.5" />
+        </motion.a>
       ))}
     </div>
   );

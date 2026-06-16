@@ -11,10 +11,31 @@ export const brand = {
 export interface ContactDetail {
   label: string;
   icon: LucideIcon;
+  href: string;
+  external?: boolean;
 }
 
+const ADDRESS = "13/A SS Khaled Road (B1-L4), Kazir Dewri, Chattogram-4000";
+const EMAIL = "dimora.pml@gmail.com";
+const PHONE_DISPLAY = "01842-117912";
+const PHONE_DIAL = "+8801842117912";
+
 export const contactDetails: ContactDetail[] = [
-  { label: "123 Luxury Avenue, Suite 500, London", icon: MapPin },
-  { label: "+44 20 7946 0000", icon: Phone },
-  { label: "inquiries@dimoraproperty.com", icon: Mail },
+  {
+    label: PHONE_DISPLAY,
+    icon: Phone,
+    href: `tel:${PHONE_DIAL}`,
+  },
+  {
+    label: EMAIL,
+    icon: Mail,
+    href: `https://mail.google.com/mail/?view=cm&fs=1&to=${EMAIL}`,
+    external: true,
+  },
+  {
+    label: ADDRESS,
+    icon: MapPin,
+    href: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ADDRESS)}`,
+    external: true,
+  },
 ];

@@ -3,7 +3,7 @@ import heroImage from "@/assets/background.png";
 
 export function BackgroundScene() {
   return (
-    <div className="absolute inset-0 z-0">
+    <div className="fixed inset-0 z-0">
       <Image
         src={heroImage}
         alt=""

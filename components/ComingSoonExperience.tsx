@@ -17,12 +17,14 @@ export function ComingSoonExperience() {
 
       <BlueprintLoader visible={stage === "loading"} />
 
-      <main className="relative z-20 flex h-full items-center justify-center px-6">
-        <BrandReveal visible={revealed} />
-      </main>
+      <div className="relative z-20 h-full overflow-y-auto overflow-x-hidden">
+        <main className="flex min-h-full flex-col items-center justify-center px-6 py-16 md:py-0">
+          <BrandReveal visible={revealed} />
+          <ContactPanel visible={revealed} />
+        </main>
 
-      <ContactPanel visible={revealed} />
-      <SiteFooter visible={revealed} />
+        <SiteFooter visible={revealed} />
+      </div>
     </div>
   );
 }
